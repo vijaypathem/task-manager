@@ -1,0 +1,14 @@
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+    <h1>Task Details</h1>
+    <h2>{{task.title}}</h2>
+    <p>{{task.description}}</p>
+    <p>completed: {{task.completed}}</p>
+    <a href="{% url 'task_update' task.pk %}">Update Task</a>
+    <form action="{% url 'task_delete' task.pk %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete Task">
+    </form>
+    <a href="{% url 'task_list' %}">Back to Task List</a>
+{% endblock %}
